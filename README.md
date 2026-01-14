@@ -1,74 +1,65 @@
-# 🏙️ Axion Prime Zoning Optimization — C++ Implementation
+Axion Prime Zoning Optimization
+This project solves a geometric optimization problem where a minimum-cost axis-aligned polygon is constructed to enclose a given number of buildings placed on a 2D grid.
 
-## 📘 Problem Description
+Problem Description
+In the city of Axion Prime, buildings are placed on a two-dimensional grid, each associated with a weight (cost). The objective is to enclose at least K buildings inside a simple, closed, axis-aligned polygon (edges parallel to the coordinate axes) such that the total cost is minimized.
 
-In the futuristic city of **Axion Prime**, buildings are scattered across a grid, each with an associated **weight (cost)**. You are tasked with enclosing **at least `K` buildings** inside a **simple, closed, axis-aligned polygon** (edges only horizontal or vertical) while **minimizing the total cost**.
+Total Cost Definition
+Total Cost = Polygon Perimeter + Sum of weights of enclosed buildings
+A building is considered enclosed if it lies inside or on the boundary of the polygon.
 
-### 🔢 Total Cost Formula:
-Total Cost = Perimeter of polygon + Sum of weights of enclosed buildings
-
-### 📌 A building is considered enclosed if:
-- It lies **inside** or **on the boundary** of the polygon.
-
----
-
-## 📥 Input Format
-
+Input Format
 N K
-x₁ y₁ w₁
-x₂ y₂ w₂
+x1 y1 w1
+x2 y2 w2
 ...
-xₙ yₙ wₙ
-
-
-- `N` — number of buildings `(1 ≤ K ≤ N ≤ 10⁴)`
-- `K` — minimum buildings to enclose
-- Each of the next `N` lines has:
-  - `xᵢ yᵢ` — coordinates of the i-th building `(0 ≤ xᵢ, yᵢ ≤ 10⁴)`
-  - `wᵢ` — weight (can be **negative**)
-
----
-
-## 📤 Output Format
-
+xN yN wN
+Constraints
+N — number of buildings
+K — minimum number of buildings to enclose
+1 ≤ K ≤ N ≤ 10^4
+(xi, yi) — coordinates of the i-th building (0 ≤ xi, yi ≤ 10^4)
+wi — weight of the building (can be negative)
+Output Format
 C
 x1 y1 x2 y2
 x2 y2 x3 y3
 ...
 xn yn x1 y1
-
-- `C` — minimum total cost (printed with at least **6 digits** after the decimal)
-- Each line describes an **axis-aligned edge** of the polygon (horizontal/vertical)
-- Polygon must be:
-  - **Simple** (non-self-intersecting)
-  - **Closed** (last edge connects to first)
-  - **Vertices can be floating points**
-
----
-
-## 🧠 Algorithmic Considerations
-
-- Try **bounding rectangles** and sliding windows over sorted coordinates
-- Use **2D prefix sums** to calculate enclosed building weights efficiently
-- Try enclosing all combinations of buildings with **area-cost tradeoffs**
-- Explore **greedy**, **brute-force**, or **optimization** strategies
-
----
-
-## 📁 Project Structure
-🧪 Sample Input
+Polygon Requirements
+Simple (non-self-intersecting)
+Closed (last edge connects back to the first)
+Axis-aligned (horizontal or vertical edges only)
+Vertices may be floating-point values
+Sample Input
 5 3
 1 1 2
 2 2 3
 3 3 -1
 4 4 1
 5 5 -2
-
 Sample Output
-
 11.000000
 1.0 1.0 5.0 1.0
 5.0 1.0 5.0 5.0
 5.0 5.0 1.0 5.0
 1.0 5.0 1.0 1.0
-
+Algorithmic Approach
+Axis-aligned bounding rectangles are used as candidate polygons
+Buildings are selected using cost-based heuristics
+Negative-cost buildings are prioritized when beneficial
+Greedy strategies balance perimeter cost and building weights
+Optimized to handle large inputs (up to 10⁴ buildings)
+Implementation Notes
+The original solution was implemented in C++ as part of an optimization-focused project
+A Python reimplementation has been added to this repository to:
+Improve readability and modularity
+Enable easier experimentation and extension
+Demonstrate language portability and algorithmic understanding
+Both implementations follow the same core logic and optimization strategy
+Project Structure
+.
+├── Optimization.cpp          # Original C++ implementation
+├── Optimization.py           # Python reimplementation
+├── Optimization_certificate.pdf  # Project completion certificate
+└── README.md                 # Project documentation
